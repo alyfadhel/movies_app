@@ -84,12 +84,65 @@ class MoviesScreen extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                 ),
               ),
+              const SizedBox(
+                height: 20.0,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 18.0,
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      flex: 6,
+                      child: Text(
+                        'Top Rated',
+                        style:
+                        Theme.of(context).textTheme.headlineSmall!.copyWith(
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    const Spacer(),
+                    Expanded(
+                      flex: 2,
+                      child: MaterialButton(
+                        onPressed: (){},
+                        padding: EdgeInsets.zero,
+                        child: Row(
+                          children: [
+                            Text(
+                              'See More',
+                              style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                                color: Colors.white,
+                              ),
+                            ),
+                            const Icon(
+                              Icons.arrow_forward_ios,
+                              color: Colors.white,
+                              size: 14.0,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+
+              ),
+              SizedBox(
+                height: 300.0,
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) => BuildPopularMovies(movie: cubit.movie[index]),
+                  itemCount: MovieCubit.get(context).movie.length,
+                  scrollDirection: Axis.horizontal,
+                ),
+              ),
             ],
           ),
         );
-
       },
-
     );
   }
 }
