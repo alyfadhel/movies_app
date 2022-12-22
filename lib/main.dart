@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context)=>sl<MovieCubit>()..getNowPlayingMovie(),
+      create: (BuildContext context)=>sl<MovieCubit>()..getNowPlayingMovie()..getPopularMovie(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Movies App',
