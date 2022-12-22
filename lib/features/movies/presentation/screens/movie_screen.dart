@@ -21,6 +21,7 @@ class MoviesScreen extends StatelessWidget {
       builder: (context, state) {
         var cubit = MovieCubit.get(context);
         return SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
           child: Column(
             children: [
               ConditionalBuilder(
