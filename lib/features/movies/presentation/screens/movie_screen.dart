@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_clean_architecture/core/services/service_locator.dart';
@@ -14,11 +15,24 @@ class MoviesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children:
-      const [
-        BuildNowPlayingMovies(),
-      ],
+    return BlocConsumer<MovieCubit,MovieStates>(
+      listener: (context, state) {
+
+      },
+      builder: (context, state) {
+        return ConditionalBuilder(
+          condition: state is! GetNowPlayingMoviesLoadingState ,
+          builder: (context) => Column(
+            children:
+               [
+              const BuildNowPlayingMovies(),
+            ],
+          ),
+          fallback: (context) => const Center(
+            child: CircularProgressIndicator(),
+          ),
+        );
+      },
     );
   }
 }

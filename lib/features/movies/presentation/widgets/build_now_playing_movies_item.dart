@@ -14,7 +14,6 @@ class BuildNowPlayingMovies extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<MovieCubit,MovieStates>(
       listener: (context, state) {
-
       },
       builder: (context, state) {
         var cubit = MovieCubit.get(context);

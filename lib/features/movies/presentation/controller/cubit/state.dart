@@ -19,3 +19,19 @@ class GetNowPlayingMoviesErrorState extends MovieStates
 
   GetNowPlayingMoviesErrorState(this.error);
 }
+
+class GetPopularMoviesLoadingState extends MovieStates{}
+
+class GetPopularMoviesSuccessState extends MovieStates
+{
+  final List<Movie>movie;
+
+  GetPopularMoviesSuccessState(this.movie);
+}
+
+class GetPopularMoviesErrorState extends MovieStates
+{
+  final String error;
+
+  GetPopularMoviesErrorState(this.error);
+}
