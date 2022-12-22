@@ -1,3 +1,4 @@
+![IMG_20221222_184023](https://user-images.githubusercontent.com/79104875/209184395-958d3158-ef85-4c12-aa94-ecf970bc2f3a.jpg)
 # movies_clean_architecture
 
 A new Flutter project.
