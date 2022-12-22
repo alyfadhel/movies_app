@@ -15,6 +15,6 @@ For help getting started with Flutter development, view the
 samples, guidance on mobile development, and a full API reference.
 
 using Bloc(cubit)statement.
-using package likes (dio,equatable,dartz,get_it,animate_do,cached_network_image,carousel_slider,shimmer,hexcolor and   conditional_builder_null_safety: ^0.0.6
+using package likes (dio,equatable,dartz,get_it,animate_do,cached_network_image,carousel_slider,shimmer,hexcolor and   conditional_builder_null_safety
 ).
 
