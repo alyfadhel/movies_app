@@ -9,7 +9,8 @@ This project is a starting point for a Flutter application. The application offe
 The following technologies are used to develop this mobile application:
 •	Bloc (cubit) statement .
 •	dio .
-•	equatable dartz .
+•	equatable
+• dartz .
 •	get_it .
 •	animate_do .
 • cached_network_image .
