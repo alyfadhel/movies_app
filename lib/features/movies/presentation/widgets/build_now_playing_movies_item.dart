@@ -66,9 +66,10 @@ class BuildNowPlayingMovies extends StatelessWidget {
                         blendMode: BlendMode.dstIn,
                         child: CachedNetworkImage(
                           height: 560.0,
+                          width: double.infinity,
                           imageUrl:
-                          AppConstance.imageUrl(item.backdropPath),
-                          fit: BoxFit.cover,
+                          AppConstance.imageUrl(item.posterPath),
+                          fit: BoxFit.fill,
                         ),
                       ),
                       Align(

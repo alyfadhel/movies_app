@@ -26,7 +26,7 @@ class BuildTopRatedMovies extends StatelessWidget {
               image: DecorationImage(
                 fit: BoxFit.fill,
                 image: NetworkImage(
-                  AppConstance.imageUrl(movie.backdropPath),
+                  AppConstance.imageUrl(movie.posterPath),
                 ),
               ),
             ),
