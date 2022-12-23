@@ -17,3 +17,20 @@ class GetOnTheAirTvsErrorState extends TvsStates
 
   GetOnTheAirTvsErrorState(this.error);
 }
+
+//////////////////////////////////////////////////////////
+
+class GetPopularTvsSuccessState extends TvsStates
+{
+  final List<Tvs>tvs;
+
+  GetPopularTvsSuccessState(this.tvs);
+}
+class GetPopularTvsErrorState extends TvsStates
+{
+  final String error;
+
+  GetPopularTvsErrorState(this.error);
+}
+
+/////////////////////////////////////////////////////////////

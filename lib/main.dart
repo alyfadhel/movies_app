@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (BuildContext context)=>sl<MovieCubit>()..getNowPlayingMovie()..getPopularMovie()..getTopRatedMovies()..getUpcomingMovies(),),
-        BlocProvider(create: (BuildContext context) => sl<TvsCubit>()..getOnTheAir(),)
+        BlocProvider(create: (BuildContext context) => sl<TvsCubit>()..getOnTheAir()..getPopularTvs(),)
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

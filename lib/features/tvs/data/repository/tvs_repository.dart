@@ -11,12 +11,23 @@ class TvsRepository extends BaseTvsRepository
 
   TvsRepository(this.baseTvsRemoteDataSource);
   @override
-  Future<Either<Failure, List<Tvs>>> getOnTheAir() async{
+  Future<Either<Failure, List<Tvs>>> getOnTheAirTvs() async{
     final result = await baseTvsRemoteDataSource.getOnTheAir();
 
     try{
       return Right(result);
     } on ServerException catch(failure){
+      return Left(ServerFailure(failure.errorMessageModel.statusMessage));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<Tvs>>> getPopularTvs() async{
+    final result = await baseTvsRemoteDataSource.getPopularTvs();
+
+    try{
+      return Right(result);
+    }on ServerException catch(failure){
       return Left(ServerFailure(failure.errorMessageModel.statusMessage));
     }
   }

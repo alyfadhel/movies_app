@@ -7,6 +7,7 @@ import 'package:movies_clean_architecture/features/tvs/data/model/tvs_model.dart
 abstract class BaseTvsRemoteDataSource
 {
   Future<List<TvsModel>>getOnTheAir();
+  Future<List<TvsModel>>getPopularTvs();
 }
 
 class TvsRemoteDataSource extends BaseTvsRemoteDataSource
@@ -17,6 +18,18 @@ class TvsRemoteDataSource extends BaseTvsRemoteDataSource
     if(response.statusCode == 200 ){
       return List<TvsModel>.from((response.data['results']as List)
         .map((e) => TvsModel.fromJson(e)));
+    }else{
+      throw ServerException(errorMessageModel: ErrorMessageModel.fromJson(response.data));
+    }
+  }
+
+  @override
+  Future<List<TvsModel>> getPopularTvs() async{
+    final response = await Dio().get(AppConstance.popularTvsPath);
+
+    if(response.statusCode == 200){
+      return List<TvsModel>.from((response.data['results'] as List)
+      .map((e) => TvsModel.fromJson(e)));
     }else{
       throw ServerException(errorMessageModel: ErrorMessageModel.fromJson(response.data));
     }
