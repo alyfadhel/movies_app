@@ -32,4 +32,15 @@ class TvsRepository extends BaseTvsRepository
     }
   }
 
+  @override
+  Future<Either<Failure, List<Tvs>>> getTopRatedTvs() async{
+    final result = await baseTvsRemoteDataSource.getTopRatedTvs();
+
+    try{
+      return Right(result);
+    }on ServerException catch(failure){
+      return Left(ServerFailure(failure.errorMessageModel.statusMessage));
+    }
+  }
+
 }

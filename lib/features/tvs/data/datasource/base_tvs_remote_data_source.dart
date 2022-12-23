@@ -8,6 +8,7 @@ abstract class BaseTvsRemoteDataSource
 {
   Future<List<TvsModel>>getOnTheAir();
   Future<List<TvsModel>>getPopularTvs();
+  Future<List<TvsModel>>getTopRatedTvs();
 }
 
 class TvsRemoteDataSource extends BaseTvsRemoteDataSource
@@ -29,6 +30,18 @@ class TvsRemoteDataSource extends BaseTvsRemoteDataSource
 
     if(response.statusCode == 200){
       return List<TvsModel>.from((response.data['results'] as List)
+      .map((e) => TvsModel.fromJson(e)));
+    }else{
+      throw ServerException(errorMessageModel: ErrorMessageModel.fromJson(response.data));
+    }
+  }
+
+  @override
+  Future<List<TvsModel>> getTopRatedTvs() async{
+    final response = await Dio().get(AppConstance.topRatedTvsPath);
+
+    if(response.statusCode == 200){
+      return List<TvsModel>.from((response.data['results']as List)
       .map((e) => TvsModel.fromJson(e)));
     }else{
       throw ServerException(errorMessageModel: ErrorMessageModel.fromJson(response.data));

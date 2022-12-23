@@ -34,3 +34,18 @@ class GetPopularTvsErrorState extends TvsStates
 }
 
 /////////////////////////////////////////////////////////////
+
+class GetTopRatedTvsSuccessState extends TvsStates
+{
+  final List<Tvs>tvs;
+
+  GetTopRatedTvsSuccessState(this.tvs);
+}
+class GetTopRatedTvsErrorState extends TvsStates
+{
+  final String error;
+
+  GetTopRatedTvsErrorState(this.error);
+}
+
+//////////////////////////////////////////////////////////////

@@ -12,6 +12,7 @@ import 'package:movies_clean_architecture/features/tvs/data/repository/tvs_repos
 import 'package:movies_clean_architecture/features/tvs/domain/repository/base_tvs_repository.dart';
 import 'package:movies_clean_architecture/features/tvs/domain/usecase/get_on_the_air_use_case.dart';
 import 'package:movies_clean_architecture/features/tvs/domain/usecase/get_popular_tvs_use_case.dart';
+import 'package:movies_clean_architecture/features/tvs/domain/usecase/get_top_rated_tvs_use_case.dart';
 import 'package:movies_clean_architecture/features/tvs/presentation/controller/cubit/cubit.dart';
 
 final sl = GetIt.instance;
@@ -41,10 +42,12 @@ class ServiceLocator {
       () => TvsCubit(
         sl(),
         sl(),
+        sl(),
       ),
     );
     sl.registerLazySingleton(() => GetOnTheAirUseCase(sl()));
     sl.registerFactory(() => GetPopularTvsUseCase(sl()));
+    sl.registerFactory(() => GetTopRateTvsUseCase(sl()));
     sl.registerLazySingleton<BaseTvsRepository>(() => TvsRepository(sl()));
     sl.registerLazySingleton<BaseTvsRemoteDataSource>(
         () => TvsRemoteDataSource());

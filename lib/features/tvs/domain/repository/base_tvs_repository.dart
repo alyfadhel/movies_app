@@ -6,4 +6,5 @@ abstract class BaseTvsRepository
 {
   Future<Either<Failure,List<Tvs>>>getOnTheAirTvs();
   Future<Either<Failure,List<Tvs>>>getPopularTvs();
+  Future<Either<Failure,List<Tvs>>>getTopRatedTvs();
 }
