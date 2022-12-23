@@ -10,6 +10,8 @@ abstract class BaseMovieRemoteDataSource {
   Future<List<MovieModel>> getPopularMovies();
 
   Future<List<MovieModel>> getTopRatedMovies();
+
+  Future<List<MovieModel>>getUpComingMovies();
 }
 
 class MovieRemoteDataSource implements BaseMovieRemoteDataSource {
@@ -40,6 +42,18 @@ class MovieRemoteDataSource implements BaseMovieRemoteDataSource {
   Future<List<MovieModel>> getTopRatedMovies() async{
     final response = await Dio().get(AppConstance.topRatedMoviesPath);
     if(response.statusCode == 200){
+      return List<MovieModel>.from((response.data['results'] as List)
+      .map((e) => MovieModel.fromJson(e)));
+    }else{
+      throw ServerException(errorMessageModel: ErrorMessageModel.fromJson(response.data));
+    }
+  }
+
+  @override
+  Future<List<MovieModel>> getUpComingMovies() async{
+    final response = await Dio().get(AppConstance.upComingMoviesPath);
+
+    if(response.statusCode == 200 ){
       return List<MovieModel>.from((response.data['results'] as List)
       .map((e) => MovieModel.fromJson(e)));
     }else{

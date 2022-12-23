@@ -51,3 +51,17 @@ class GetTopRatedMoviesErrorState extends MovieStates
 
   GetTopRatedMoviesErrorState(this.error);
 }
+
+class GetUpComingMoviesSuccessState extends MovieStates
+{
+  final List<Movie>movie;
+
+  GetUpComingMoviesSuccessState(this.movie);
+}
+
+class GetUpComingMoviesErrorState extends MovieStates
+{
+  final String error;
+
+  GetUpComingMoviesErrorState(this.error);
+}

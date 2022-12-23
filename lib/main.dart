@@ -5,6 +5,7 @@ import 'package:movies_clean_architecture/core/util/layout/home_layout.dart';
 import 'package:movies_clean_architecture/core/util/observer.dart';
 import 'package:movies_clean_architecture/features/movies/presentation/controller/cubit/cubit.dart';
 import 'package:movies_clean_architecture/features/movies/presentation/screens/movie_screen.dart';
+import 'package:movies_clean_architecture/features/tvs/presentation/controller/cubit/cubit.dart';
 
 
 
@@ -20,8 +21,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (BuildContext context)=>sl<MovieCubit>()..getNowPlayingMovie()..getPopularMovie()..getTopRatedMovies(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (BuildContext context)=>sl<MovieCubit>()..getNowPlayingMovie()..getPopularMovie()..getTopRatedMovies()..getUpcomingMovies(),),
+        BlocProvider(create: (BuildContext context) => sl<TvsCubit>()..getOnTheAir(),)
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Movies App',

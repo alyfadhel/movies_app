@@ -5,6 +5,7 @@ import 'package:movies_clean_architecture/features/movies/domain/entities/movie.
 import 'package:movies_clean_architecture/features/movies/domain/usecase/get_now_playing_movies.dart';
 import 'package:movies_clean_architecture/features/movies/domain/usecase/get_polpular_movies.dart';
 import 'package:movies_clean_architecture/features/movies/domain/usecase/get_top_rated_movies.dart';
+import 'package:movies_clean_architecture/features/movies/domain/usecase/get_up_coming_movies_use_case.dart';
 import 'package:movies_clean_architecture/features/movies/presentation/controller/cubit/state.dart';
 
 class MovieCubit extends Cubit<MovieStates> {
@@ -12,11 +13,13 @@ class MovieCubit extends Cubit<MovieStates> {
   final GetNowPlayingMoviesUseCase getNowPlayingMovieUseCase;
   final GetPopularMoviesUseCase getPopularMoviesUseCase;
   final GetTopRatesMoviesUseCase getTopRatesMoviesUseCase;
+  final GetUpComingMoviesUseCase getUpComingMoviesUseCase;
 
   MovieCubit(
     this.getNowPlayingMovieUseCase,
     this.getPopularMoviesUseCase,
     this.getTopRatesMoviesUseCase,
+    this.getUpComingMoviesUseCase,
   ) : super(InitialMovieState());
 
   static MovieCubit get(context) => BlocProvider.of(context);
@@ -46,18 +49,32 @@ class MovieCubit extends Cubit<MovieStates> {
     );
   }
 
-  void getTopRatedMovies()async
-  {
+  void getTopRatedMovies() async {
     emit(GetTopRatedMoviesLoadingState());
     final result = await getTopRatesMoviesUseCase(const NoParameters());
 
     result.fold(
-            (l) => emit(GetTopRatedMoviesErrorState(l.message)),
-            (r)
-      {
+      (l) => emit(GetTopRatedMoviesErrorState(l.message)),
+      (r) {
         movie = r;
         emit(GetTopRatedMoviesSuccessState(r));
-      } ,
+      },
     );
   }
+
+  void getUpcomingMovies()async
+  {
+    final result = await getUpComingMoviesUseCase(const NoParameters());
+
+    result.fold(
+            (l) => emit(GetUpComingMoviesErrorState(l.message)),
+            (r) {
+              movie = r;
+              emit(GetUpComingMoviesSuccessState(r));
+            } ,
+    );
+  }
+
+
+
 }

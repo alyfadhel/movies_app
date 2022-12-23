@@ -4,19 +4,20 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_clean_architecture/core/util/constance.dart';
-import 'package:movies_clean_architecture/features/movies/presentation/controller/cubit/cubit.dart';
-import 'package:movies_clean_architecture/features/movies/presentation/controller/cubit/state.dart';
+import 'package:movies_clean_architecture/features/tvs/presentation/controller/cubit/cubit.dart';
+import 'package:movies_clean_architecture/features/tvs/presentation/controller/cubit/states.dart';
 
-class BuildNowPlayingMovies extends StatelessWidget {
-  const BuildNowPlayingMovies({Key? key}) : super(key: key);
+class BuildOnTheAir extends StatelessWidget {
+  const BuildOnTheAir({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<MovieCubit,MovieStates>(
+    return BlocConsumer<TvsCubit,TvsStates>(
       listener: (context, state) {
+
       },
       builder: (context, state) {
-        var cubit = MovieCubit.get(context);
+        var cubit = TvsCubit.get(context);
         return FadeIn(
           duration: const Duration(milliseconds: 500),
           child: CarouselSlider(
@@ -34,7 +35,7 @@ class BuildNowPlayingMovies extends StatelessWidget {
               enlargeFactor: 0.3,
               scrollDirection: Axis.horizontal,
             ),
-            items: cubit.movie.map(
+            items: cubit.tvs.map(
                   (item) {
                 return GestureDetector(
                   key: const Key('openMovieMinimalDetail'),
@@ -68,7 +69,7 @@ class BuildNowPlayingMovies extends StatelessWidget {
                           height: 560.0,
                           width: double.infinity,
                           imageUrl:
-                          AppConstance.imageUrl(item.backdropPath),
+                          AppConstance.imageUrl(item.posterPath),
                           fit: BoxFit.fill,
                         ),
                       ),
@@ -103,7 +104,7 @@ class BuildNowPlayingMovies extends StatelessWidget {
                               padding:
                               const EdgeInsets.only(bottom: 16.0),
                               child: Text(
-                                item.title,
+                                item.name,
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
                                     fontSize: 24, color: Colors.white),
@@ -120,7 +121,6 @@ class BuildNowPlayingMovies extends StatelessWidget {
           ),
         );
       },
-
     );
   }
 }
